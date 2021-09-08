@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+
+$myColor: #34495e;
+$bgColor: #ecf0f1;
+$footerColor: #bdc3c7;
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  // background-color: $bgColor;
+}
+
+.navbar {
+  width: 100%;
+  background-color: $myColor;
+  color: #fff;
+  padding: 10px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo {
+    h1 {
+      color: #000;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+      transition: all 0.2s ease;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+  .leng {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    input {
+      transform: scale(1.5);
+    }
+  }
+}
+
+.btns {
+  button {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    margin-left: 5px;
+    transition: all 0.2s ease;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.home {
+  padding: 10px 60px;
+}
+
+.all-banks {
+  .control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .input-group,  
+    select {
+      width: 100px;
+      
+    }
+  }
+
+  
+
+  
+  
+  
+}
+
+.footer {
+  padding: 20px 60px;
+  background-color: $footerColor;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .social {
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  }
+  .desc {
+    text-align: center;
+    h4 {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

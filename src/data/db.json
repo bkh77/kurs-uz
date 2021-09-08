@@ -1,0 +1,110 @@
+{
+  "rates": [
+    {
+      "id": "1",
+      "code": "USD",
+      "buy_price": "10670",
+      "cell_price": "10700",
+      "cbu_rate": "10653.18",
+      "exchange": "10653.20"
+    },
+    {
+      "id": "2",
+      "code": "EUR",
+      "buy_price": "10670",
+      "cell_price": "10700",
+      "cbu_rate": "10653.18",
+      "exchange": "10653.20"
+    },
+    {
+      "id": "3",
+      "code": "RUB",
+      "buy_price": "10670",
+      "cell_price": "10700",
+      "cbu_rate": "10653.18",
+      "exchange": "10653.20"
+    }
+  ],
+  "banks": [
+    {
+      "id": "1",
+      "name": "Kapitalbank",
+      "buy_price": "10640",
+      "cell_price": "10700"
+    },
+    {
+      "id": "2",
+      "name": "Xalq bank",
+      "buy_price": "10640",
+      "cell_price": "10700"
+    },
+    {
+      "id": "3",
+      "name": "Hamkorbank",
+      "buy_price": "10640",
+      "cell_price": "10700"
+    },
+    {
+      "id": "4",
+      "name": "Asakabank",
+      "buy_price": "10640",
+      "cell_price": "10700"
+    },
+    {
+      "id": "5",
+      "name": "Aloqabank",
+      "buy_price": "10640",
+      "cell_price": "10700"
+    }
+  ],
+  "banks2": [
+    {
+      "id": 1,
+      "bank": "Poytaxt Bank",
+      "image": "/media/images/refresh.png",
+      "name_usd": "USD",
+      "name_eur": "EUR",
+      "name_rub": "RUB",
+      "amount_sale_usd": 10700.0,
+      "amount_buy_usd": 10650.0,
+      "amount_sale_eur": 13250.0,
+      "amount_buy_eur": 11950.0,
+      "amount_sale_rub": 145.5,
+      "amount_buy_rub": 132.0,
+      "create_at": "2021-09-04T12:20:13.079397Z",
+      "update_at": "2021-09-04T12:20:13.079397Z"
+    },
+    {
+      "id": 2,
+      "bank": "Poytaxt Bank",
+      "image": "/media/images/refresh.png",
+      "name_usd": "USD",
+      "name_eur": "EUR",
+      "name_rub": "RUB",
+      "amount_sale_usd": 10700.0,
+      "amount_buy_usd": 10670.0,
+      "amount_sale_eur": 13400.0,
+      "amount_buy_eur": 12050.0,
+      "amount_sale_rub": 147.0,
+      "amount_buy_rub": 133.0,
+      "create_at": "2021-09-06T07:51:09.496217Z",
+      "update_at": "2021-09-06T07:51:09.496217Z"
+    }
+  ],
+
+  "cbr":[
+    
+    {
+      "name": "Markaziy bank",
+      "amount_usd": "10660",
+      "amount_eur": "12600",
+      "amount_rub": "137",
+      "difference_usd": "1.36",
+      "difference_eur": "2.61",
+      "difference_rub": "2.36",
+      "date": "10.05.2021",
+      "create_at": "10.05.2021 10:15",
+      "update_at": "10.05.2021 10:15"
+    }
+  ]
+}
