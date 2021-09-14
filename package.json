@@ -11,12 +11,15 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
+    "datejs": "^1.0.0-rc3",
     "node-sass": "5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-google-charts": "^3.0.15",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
+    "recharts": "^2.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

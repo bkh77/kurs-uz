@@ -1,25 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiCall } from "../middleware/apiCallAction";
+import { apiCall, apiCallHistory } from "../middleware/apiCallAction";
 
 const slice = createSlice({
   name: "home",
   initialState: {
     banks: [],
+    month: [],
     markaz: [],
   },
   reducers: {
-    getData: (state, action) => {
+    saveBanks: (state, action) => {
       state.banks = action.payload;
-
-
     },
-    getMarkaz: (state, action) => {
-      // console.log(action.payload);
-      state.markaz = [
-        { id: "USD", cbr: action.payload[0].amount_usd },
-        { id: "EUR", cbr: action.payload[0].amount_eur },
-        { id: "RUB", cbr: action.payload[0].amount_rub },
-      ];
+
+    saveMonth: (state, action) => {
+      state.month = action.payload;
     },
   },
 });
@@ -28,16 +23,18 @@ export const getBanks = () =>
   apiCall({
     url: "mainday/",
     method: "GET",
-    onSuccess: slice.actions.getData.type,
-    onFail: slice.actions.getData.type,
+    onSuccess: slice.actions.saveBanks.type,
+    onFail: slice.actions.saveBanks.type,
   });
 
-export const getMarkaz = () =>
+export const getMonth = () =>
   apiCall({
-    url: "markaziyday/",
+    url: "month/",
     method: "GET",
-    onSuccess: slice.actions.getMarkaz.type,
-    onFail: slice.actions.getMarkaz.type,
+    onSuccess: slice.actions.saveMonth.type,
+    onFail: slice.actions.saveMonth.type,
   });
+
+
 
 export default slice.reducer;

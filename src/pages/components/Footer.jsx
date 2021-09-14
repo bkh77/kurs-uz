@@ -14,7 +14,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="social">
-        <p>Biz bilan bo'lanish</p>
+        <p>Biz bilan bog'lanish</p>
 
         <ul>
           <li>

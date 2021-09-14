@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const api =
+export const api2 =
   ({ dispatch }) =>
   (next) =>
   (action) => {
-    if (action.type !== "api/apiCall") {
+    if (action.type !== "api/historyRate") {
       next(action);
       return;
     }
@@ -13,14 +13,14 @@ export const api =
 
     const { url, method, data, onSuccess, onFail } = action.payload;
 
+
     axios({
-      baseURL: "http://valyuta-kurslari.uz/api/",
+      baseURL: "https://cbu.uz/oz/arkhiv-kursov-valyut/json/",
       url,
       method,
       data,
     })
       .then((res) => {
-        // console.log(res.data);
         dispatch({
           type: onSuccess,
           payload: res.data,

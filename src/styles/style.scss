@@ -4,6 +4,15 @@ $myColor: #34495e;
 $bgColor: #ecf0f1;
 $footerColor: #bdc3c7;
 
+$mm: #db7474;
+
+@mixin flexible($fd, $jc, $ai) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
 body,
 html {
   margin: 0;
@@ -70,18 +79,30 @@ html {
     justify-content: space-between;
     align-items: center;
 
-    .input-group,  
+    .input-group,
     select {
       width: 100px;
-      
+    }
+  }
+  .update-date {
+    font-size: 12px;
+  }
+  .bank-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p{
+      margin: 0;
+    }
+    img {
+      width: 140px;
     }
   }
 
-  
-
-  
-  
-  
+  tbody td {
+    vertical-align: middle;
+  }
 }
 
 .footer {
@@ -110,5 +131,55 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+}
+
+.history {
+  padding: 20px 60px;
+
+  .header,
+  .history-links {
+    display: flex;
+    justify-content: space-between;
+    button {
+      margin-right: 15px;
+    }
+  }
+}
+
+.contact {
+  padding: 10px 60px;
+  height: 418px;
+  display: flex;
+
+  .left {
+    flex: 1;
+  }
+  .right {
+    flex: 1;
+    @include flexible(column, center, center);
+    form {
+      width: 400px;
+      @include flexible(column, space-around, center);
+      & > * {
+        width: 400px;
+        font-size: 14px;
+        margin: 10px 0;
+        padding: 5px 10px;
+        border: 1px solid $myColor;
+        border-radius: 5px;
+      }
+      .contact-btn {
+        border: none;
+        padding: 5px;
+        width: 150px;
+        background-color: $myColor;
+        color: #fff;
+        transition: all 0.2s ease;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
   }
 }

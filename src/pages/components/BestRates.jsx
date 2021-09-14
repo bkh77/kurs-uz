@@ -1,7 +1,24 @@
 import React from "react";
-// import db from "../../data/db.json";
 
 function BestRates({markaz}) {
+
+
+  function getToday() {
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const dt = date.getDate();  
+    if (dt < 10) {
+      dt = "0" + dt;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    return year + "-" + month + "-" + dt;
+  }
+  
+  
   return (
     <div className="best-rates mb-5">
       <h3 className="text-center my-3">Bugungi eng yaxshi kurslar</h3>

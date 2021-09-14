@@ -5,10 +5,16 @@ import SliderValue from "./SliderValue";
 // import EuroIcon from "@material-ui/icons/Euro";
 
 function AllBanks({ banks }) {
-  // console.log(banks);
   const getFormattedDate2 = (dateStr) => {
     const date = new Date(dateStr);
-    return date.toLocaleString();
+    return date.toLocaleString("en-US", {
+      day: "numeric",
+      year: "numeric",
+      month: "short",
+      hour: "numeric", // numeric, 2-digit
+      minute: "numeric", // numeric, 2-digit
+      // second: "numeric", // numeric, 2-digit
+    });
   };
   const [amount, setAmount] = useState(200);
 
@@ -52,7 +58,7 @@ function AllBanks({ banks }) {
         <SliderValue amount={amount} setAmount={setAmount} />
       </div>
 
-      <table className="table table-striped">
+      <table className="table table-striped table-sm">
         <thead>
           <tr>
             <th>Bank</th>
@@ -60,18 +66,19 @@ function AllBanks({ banks }) {
             <th>Olish</th>
             <th>Sotish </th>
             <th>Miqdor </th>
-            <th>Yangilangan vaqt </th>
+            <th>Yangilangan</th>
           </tr>
         </thead>
         <tbody>
           {banks.map((item) => (
-            <tr key={item.bank}>
+            <tr key={item.id}>
               <td>
                 <div className="bank-img">
                   <img
-                    src={"http://192.168.1.110:8000" + item.image}
+                    src={"http://valyuta-kurslari.uz" + item.image}
                     alt={item.bank}
                   />
+                <p>{item.bank}</p>
                 </div>
               </td>
               <td style={{ textTransform: "uppercase" }}>{currentRate}</td>
@@ -80,7 +87,9 @@ function AllBanks({ banks }) {
               <td>{item["amount_sale_" + currentRate]} so'm</td>
 
               <td>{amount * item["amount_" + buySale + currentRate]} so'm </td>
-              <td align="right">{getFormattedDate2(item.update_at)}</td>
+              <td className="update-date">
+                {getFormattedDate2(item.update_at)}
+              </td>
             </tr>
           ))}
         </tbody>
