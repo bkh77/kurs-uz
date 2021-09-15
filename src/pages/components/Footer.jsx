@@ -35,7 +35,7 @@ function Footer() {
         </ul>
       </div>
       <div className="desc">
-        <h4>kurs.uz</h4>
+        <h4>valyuta-kurslari.uz</h4>
         <p>
           O'zbekistondagi barcha banklarning <br /> valyuta kurslari
         </p>

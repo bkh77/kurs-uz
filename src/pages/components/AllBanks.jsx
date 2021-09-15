@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import SliderValue from "./SliderValue";
-// import db from "../../data/db.json";
-// import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-// import EuroIcon from "@material-ui/icons/Euro";
 
 function AllBanks({ banks }) {
   const getFormattedDate2 = (dateStr) => {
@@ -11,9 +8,8 @@ function AllBanks({ banks }) {
       day: "numeric",
       year: "numeric",
       month: "short",
-      hour: "numeric", // numeric, 2-digit
-      minute: "numeric", // numeric, 2-digit
-      // second: "numeric", // numeric, 2-digit
+      hour: "numeric", 
+      minute: "numeric",       
     });
   };
   const [amount, setAmount] = useState(200);
@@ -78,7 +74,7 @@ function AllBanks({ banks }) {
                     src={"http://valyuta-kurslari.uz" + item.image}
                     alt={item.bank}
                   />
-                <p>{item.bank}</p>
+                  <p>{item.bank}</p>
                 </div>
               </td>
               <td style={{ textTransform: "uppercase" }}>{currentRate}</td>

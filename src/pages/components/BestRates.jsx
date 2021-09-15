@@ -1,24 +1,119 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getMarkaz } from "../../store/reducers/rateHistory";
 
-function BestRates({markaz}) {
+import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 
+function BestRates({ markaz, getMarkaz, banks }) {
+  useEffect(() => {
+    getMarkaz();
+  }, [getMarkaz]);
 
-  function getToday() {
-
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const dt = date.getDate();  
-    if (dt < 10) {
-      dt = "0" + dt;
+  function colorDiff(value) {
+    if (parseFloat(value) > 0) {
+      return "#2ecc71";
+    } else {
+      return "#ff4757";
     }
-    if (month < 10) {
-      month = "0" + month;
-    }
-    return year + "-" + month + "-" + dt;
   }
-  
-  
+
+  function iconDiff(value) {
+    return parseFloat(value) > 0;
+  }
+
+  // -----------------------------------------
+
+  const bestBuyUSD = Math.max.apply(
+    Math,
+    banks.map(function (o) {
+      return o.amount_buy_usd;
+    })
+  );
+  const bestBuyEUR = Math.max.apply(
+    Math,
+    banks.map(function (o) {
+      return o.amount_buy_eur;
+    })
+  );
+  const bestBuyRUB = Math.max.apply(
+    Math,
+    banks.map(function (o) {
+      return o.amount_buy_rub;
+    })
+  );
+
+  const bestSaleUSD = Math.min.apply(
+    Math,
+    banks.map(function (o) {
+      return o.amount_sale_usd;
+    })
+  );
+  const bestSaleEUR = Math.min.apply(
+    Math,
+    banks.map(function (o) {
+      return o.amount_sale_eur;
+    })
+  );
+  const bestSaleRUB = Math.min.apply(
+    Math,
+    banks
+      .filter((i) => i.amount_sale_rub !== 0 && i.amount_sale_rub > 0)
+      .map((o) => {
+        return o.amount_sale_rub;
+      })
+  );
+
+  const filteredUSD = banks.filter((i) => i.amount_buy_usd === bestBuyUSD);
+  const filteredEUR = banks.filter((i) => i.amount_buy_eur === bestBuyEUR);
+  const filteredRUB = banks.filter((i) => i.amount_buy_rub === bestBuyRUB);
+
+  const filteredSaleUSD = banks.filter(
+    (i) => i.amount_sale_usd === bestSaleUSD
+  );
+  const filteredSaleEUR = banks.filter(
+    (i) => i.amount_sale_eur === bestSaleEUR
+  );
+  const filteredSaleRUB = banks.filter(
+    (i) => i.amount_sale_rub === bestSaleRUB
+  );
+
+  const markazBest = markaz.map((item) => {
+    if (item.Ccy === "USD") {
+      return {
+        ...item,
+        buy: { ...filteredUSD[0] },
+        sale: { ...filteredSaleUSD[0] },
+      };
+    } else if (item.Ccy === "EUR") {
+      return {
+        ...item,
+        buy: { ...filteredEUR[0] },
+        sale: { ...filteredSaleEUR[0] },
+      };
+    } else if (item.Ccy === "RUB") {
+      return {
+        ...item,
+        buy: { ...filteredRUB[0] },
+        sale: { ...filteredSaleRUB[0] },
+      };
+    }
+    return item;
+  });
+
+  console.log(markazBest);
+
+  function defRate(i) {
+    switch (i) {
+      case "840":
+        return "usd";
+      case "978":
+        return "eur";
+      case "643":
+        return "rub";
+      default:
+    }
+  }
+
   return (
     <div className="best-rates mb-5">
       <h3 className="text-center my-3">Bugungi eng yaxshi kurslar</h3>
@@ -27,20 +122,29 @@ function BestRates({markaz}) {
         <thead>
           <tr>
             <th>Valyuta</th>
-            <th>Sotib olish</th>
+            <th>Olish</th>
             <th>Sotish</th>
             <th>Markaziy bank</th>
-            <th>Birja</th>
+            <th>O'zgarish</th>
           </tr>
         </thead>
         <tbody>
-          {markaz.map((item) => (
+          {markazBest.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.buy_price} so'm </td>
-              <td>{item.cell_price} so'm</td>
-              <td>{item.cbr} so'm</td>
-              <td>{item.exchange} so'm</td>
+              <td>{item.Ccy} </td>
+              <td>
+                {item.buy["amount_buy_" + defRate(item.Code)]} so'm
+                <p>{item.buy.bank}</p>
+              </td>
+              <td>
+                {item.sale["amount_sale_" + defRate(item.Code)]} so'm
+                <p>{item.sale.bank}</p>
+              </td>
+              <td>{item.Rate} so'm</td>
+              <td style={{ color: colorDiff(item.Diff) }}>
+                {item.Diff}{" "}
+                {iconDiff(item.Diff) ? <BsCaretUpFill /> : <BsCaretDownFill />}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -49,4 +153,9 @@ function BestRates({markaz}) {
   );
 }
 
-export default BestRates;
+export default connect(
+  ({ rateHistory: { markaz }, home: { banks } }) => ({ markaz, banks }),
+  {
+    getMarkaz,
+  }
+)(BestRates);

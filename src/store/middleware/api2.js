@@ -13,7 +13,6 @@ export const api2 =
 
     const { url, method, data, onSuccess, onFail } = action.payload;
 
-
     axios({
       baseURL: "https://cbu.uz/oz/arkhiv-kursov-valyut/json/",
       url,

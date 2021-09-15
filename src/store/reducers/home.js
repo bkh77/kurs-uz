@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiCall, apiCallHistory } from "../middleware/apiCallAction";
+import { apiCall } from "../middleware/apiCallAction";
 
 const slice = createSlice({
   name: "home",
   initialState: {
     banks: [],
     month: [],
-    markaz: [],
+    ratesHistory: [],
   },
   reducers: {
     saveBanks: (state, action) => {
@@ -15,6 +15,10 @@ const slice = createSlice({
 
     saveMonth: (state, action) => {
       state.month = action.payload;
+    },
+
+    saveRatesHistory: (state, action) => {
+      state.ratesHistory = action.payload;
     },
   },
 });
@@ -27,14 +31,12 @@ export const getBanks = () =>
     onFail: slice.actions.saveBanks.type,
   });
 
-export const getMonth = () =>
+export const getRatesHistory = () =>
   apiCall({
-    url: "month/",
+    url: "central/",
     method: "GET",
-    onSuccess: slice.actions.saveMonth.type,
-    onFail: slice.actions.saveMonth.type,
+    onSuccess: slice.actions.saveRatesHistory.type,
+    onFail: slice.actions.saveRatesHistory.type,
   });
-
-
 
 export default slice.reducer;

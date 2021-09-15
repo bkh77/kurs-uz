@@ -6,7 +6,7 @@ function Navbar() {
     <div className="navbar">
         <div className="logo">
           <Link to="/" style={{ textDecoration: "none" }}>
-            <h1 className="logolink">kurs.uz</h1>
+            <h1 className="logolink">valyuta-kurslari.uz</h1>
           </Link>
         </div>
         <div className="leng">

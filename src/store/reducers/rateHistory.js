@@ -4,46 +4,21 @@ import { apiCallHistory } from "../middleware/apiCallAction";
 const slice = createSlice({
   name: "rateHistory",
   initialState: {
-    USD: [],
-    EUR: [],
-    RUB: [],
+    markaz: [],
   },
   reducers: {
-    saveUSD: (state, action) => {
-      state.USD.push(action.payload[0]);
-    },
-
-    saveEUR: (state, action) => {
-      state.EUR.push(action.payload[0]);
-    },
-    saveRUB: (state, action) => {
-      state.RUB.push(action.payload[0]);
+    saveMarkaz: (state, action) => {
+      state.markaz = action.payload.slice(0, 3);
     },
   },
 });
 
-export const getUSD = (date) =>
+export const getMarkaz = () =>
   apiCallHistory({
-    url: `USD/${date}/`,
+    url: "",
     method: "GET",
-    onSuccess: slice.actions.saveUSD.type,
-    onFail: slice.actions.saveUSD.type,
-  });
-
-export const getEUR = (date) =>
-  apiCallHistory({
-    url: `EUR/${date}/`,
-    method: "GET",
-    onSuccess: slice.actions.saveEUR.type,
-    onFail: slice.actions.saveEUR.type,
-  });
-
-export const getRUB = (date) =>
-  apiCallHistory({
-    url: `RUB/${date}/`,
-    method: "GET",
-    onSuccess: slice.actions.saveRUB.type,
-    onFail: slice.actions.saveRUB.type,
+    onSuccess: slice.actions.saveMarkaz.type,
+    onFail: slice.actions.saveMarkaz.type,
   });
 
 export default slice.reducer;

@@ -24,6 +24,7 @@ html {
 
 .navbar {
   width: 100%;
+  height: 70px;
   background-color: $myColor;
   color: #fff;
   padding: 10px 60px;
@@ -35,7 +36,8 @@ html {
       color: #000;
       text-decoration: none;
       text-transform: uppercase;
-      font-weight: 700;
+      font-size: 28px;
+      font-weight: 600;
       color: #fff;
       margin: 0;
       transition: all 0.2s ease;
@@ -71,6 +73,19 @@ html {
 
 .home {
   padding: 10px 60px;
+
+  .best-rates{
+    tbody{
+      td{
+        vertical-align: middle;
+        p{
+          font-size: 12px;
+          margin: 0;
+          color: $myColor;
+        }
+      }
+    }
+  }
 }
 
 .all-banks {

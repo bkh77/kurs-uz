@@ -20,7 +20,6 @@ export const api =
       data,
     })
       .then((res) => {
-        // console.log(res.data);
         dispatch({
           type: onSuccess,
           payload: res.data,

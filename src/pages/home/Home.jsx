@@ -1,44 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getBanks, getMonth } from "../../store/reducers/home";
+import { getBanks, getRatesHistory } from "../../store/reducers/home";
 import AllBanks from "../components/AllBanks";
 import BestRates from "../components/BestRates";
-import { getUSD, getEUR, getRUB } from "../../store/reducers/rateHistory";
 
-
-function Home({
-  banks,
-  getBanks,
-  markaz,
-
-  getMonth,
-  month,
-
-  getUSD,
-  getEUR,
-  getRUB,
-}) {
-
-  // console.log(month);
-
+function Home({ banks, getBanks, markaz, getRatesHistory }) {
+  
   useEffect(() => {
     getBanks();
-    getMonth();
-
-    month.forEach((element) => {
-      getUSD(element.name);
-    });
-
-    month.forEach((element) => {
-      getEUR(element.name);
-    });
-
-    month.forEach((element) => {
-      getRUB(element.name);
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    getRatesHistory();
+  }, [getBanks, getRatesHistory]);
 
   return (
     <div className="home">
@@ -54,16 +25,12 @@ function Home({
 }
 
 export default connect(
-  ({ home: { banks, markaz, month } }) => ({
+  ({ home: { banks, markaz } }) => ({
     banks,
     markaz,
-    month,
   }),
   {
     getBanks,
-    getMonth,
-    getUSD,
-    getEUR,
-    getRUB,
+    getRatesHistory,
   }
 )(Home);

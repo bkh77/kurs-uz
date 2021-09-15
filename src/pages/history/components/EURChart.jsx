@@ -9,20 +9,16 @@ import {
   Area,
 } from "recharts";
 
-function EURChart({ month, getEUR, EUR }) {
-  // EUR.sort((a, b) => {
-  //   return (
-  //     new Date(...a.Date.split(".").reverse()) -
-  //     new Date(...b.Date.split(".").reverse())
-  //   );
-  // });
+function EURChart({  ratesHistory }) {
+  
+ 
 
   return (
     <div className="my-4">
       <AreaChart
         width={1200}
         height={450}
-        data={EUR}
+        data={ratesHistory}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
@@ -31,13 +27,13 @@ function EURChart({ month, getEUR, EUR }) {
             <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="Date" />
-        <YAxis dataKey="Rate" type="number" domain={[12300, 12800]} />
+        <XAxis dataKey="date" />
+        <YAxis dataKey="amount_eur" type="number" domain={[12000, 12900]} />
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="Rate"
+          dataKey="amount_eur"
           stroke="#82ca9d"
           fillOpacity={1}
           fill="url(#colorPv)"
@@ -47,4 +43,4 @@ function EURChart({ month, getEUR, EUR }) {
   );
 }
 
-export default connect(({ rateHistory: { EUR } }) => ({ EUR }))(EURChart);
+export default connect(({ home: { ratesHistory } }) => ({ ratesHistory }))(EURChart);

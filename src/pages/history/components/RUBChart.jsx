@@ -9,22 +9,13 @@ import {
   Area,
 } from "recharts";
 
-// import { getRUB } from "../../../store/reducers/rateHistory";
-
-function RUBChart({ month, getRUB, RUB }) {
-  // RUB.sort((a, b) => {
-  //   return (
-  //     new Date(...a.Date.split(".").reverse()) -
-  //     new Date(...b.Date.split(".").reverse())
-  //   );
-  // });
-
+function RUBChart({ ratesHistory }) {
   return (
     <div className="my-4">
       <AreaChart
         width={1200}
         height={450}
-        data={RUB}
+        data={ratesHistory}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
@@ -33,13 +24,13 @@ function RUBChart({ month, getRUB, RUB }) {
             <stop offset="95%" stopColor="#db7474" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="Date" />
-        <YAxis dataKey="Rate" type="number" domain={[120, 160]} />
+        <XAxis dataKey="date" />
+        <YAxis dataKey="amount_rub" type="number" domain={[120, 160]} />
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="Rate"
+          dataKey="amount_rub"
           stroke="#db7474"
           fillOpacity={1}
           fill="url(#colorPv)"
@@ -49,4 +40,6 @@ function RUBChart({ month, getRUB, RUB }) {
   );
 }
 
-export default connect(({ rateHistory: { RUB } }) => ({ RUB }))(RUBChart);
+export default connect(({ home: { ratesHistory } }) => ({ ratesHistory }))(
+  RUBChart
+);

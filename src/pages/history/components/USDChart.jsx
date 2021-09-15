@@ -9,25 +9,13 @@ import {
   Area,
 } from "recharts";
 
-function USDChart({ month, getUSD, USD }) {
-
-  const todayUSD = USD.filter((item) => new Date(item.Date) === new Date());
-
-  console.log(USD);
-
-  // USD.sort((a, b) => {
-  //   return (
-  //     new Date(...a.Date.split(".").reverse()) -
-  //     new Date(...b.Date.split(".").reverse())
-  //   );
-  // });
-
+function USDChart({ ratesHistory }) {
   return (
     <div className="my-4">
       <AreaChart
         width={1200}
         height={450}
-        data={USD}
+        data={ratesHistory}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
@@ -36,13 +24,13 @@ function USDChart({ month, getUSD, USD }) {
             <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="Date" />
-        <YAxis dataKey="Rate" type="number" domain={[10500, 10800]} />
+        <XAxis dataKey="date" />
+        <YAxis dataKey="amount_usd" type="number" domain={[10200, 10800]} />
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="Rate"
+          dataKey="amount_usd"
           stroke="#8884d8"
           fillOpacity={1}
           fill="url(#colorUv)"
@@ -52,4 +40,6 @@ function USDChart({ month, getUSD, USD }) {
   );
 }
 
-export default connect(({ rateHistory: { USD } }) => ({ USD }))(USDChart);
+export default connect(({ home: { ratesHistory } }) => ({ ratesHistory }))(
+  USDChart
+);

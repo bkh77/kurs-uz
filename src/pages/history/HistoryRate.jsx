@@ -4,7 +4,7 @@ import USDChart from "./components/USDChart";
 import EURChart from "./components/EURChart";
 import RUBChart from "./components/RUBChart";
 
-function History({ month }) {
+function History() {
   return (
     <div className="history">
       <div className="header">
@@ -22,7 +22,7 @@ function History({ month }) {
           </Link>
           <Link to="/history/rub">
             <button className="btn btn-outline-danger btn-sm">
-              RUB = Rubl kurs tarixi
+              RUB - Rubl kurs tarixi
             </button>
           </Link>
         </div>
@@ -30,13 +30,13 @@ function History({ month }) {
 
       <Switch>
         <Route path="/history/eur">
-          <EURChart month={month} />
+          <EURChart />
         </Route>
         <Route path="/history/rub">
-          <RUBChart month={month} />
+          <RUBChart />
         </Route>
         <Route path="/history">
-          <USDChart month={month} />
+          <USDChart />
         </Route>
       </Switch>
     </div>
