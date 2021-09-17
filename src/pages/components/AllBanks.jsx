@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import SliderValue from "./SliderValue";
 
-function AllBanks({ banks }) {
+function AllBanks({ banks, bestBuy, bestSale }) {
   const getFormattedDate2 = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleString("en-US", {
       day: "numeric",
       year: "numeric",
       month: "short",
-      hour: "numeric", 
-      minute: "numeric",       
+      hour: "numeric",
+      minute: "numeric",
     });
   };
   const [amount, setAmount] = useState(200);
@@ -17,6 +17,46 @@ function AllBanks({ banks }) {
   const [currentRate, setCurrentRate] = useState("usd");
 
   const [buySale, setBuySale] = useState("buy_");
+
+  const style = {
+    backgroundColor: "#FFC107",
+    padding: "3px",
+    borderRadius: "3px",
+  };
+
+  function optimalBuy(val, currentRate) {
+    let id = 0;
+    if (currentRate === "eur") {
+      id = 1;
+    } else if (currentRate === "rub") {
+      id = 2;
+    }
+    return val === bestBuy[id];
+  }
+
+  function optimalSale(val, currentRate) {
+    let id = 0;
+    if (currentRate === "eur") {
+      id = 1;
+    } else if (currentRate === "rub") {
+      id = 2;
+    }
+    return val === bestSale[id];
+  }
+
+  function symbols(i) {
+    switch (i) {
+      case "usd":
+        return <b>&#36;</b>;
+      case "eur":
+        return <b>&euro;</b>;
+      case "rub":
+        return <b>&#8381;</b>;
+
+      default:
+        break;
+    }
+  }
 
   return (
     <div className="all-banks mb-5">
@@ -43,7 +83,7 @@ function AllBanks({ banks }) {
           <option value="rub">RUB</option>
         </select>
         <div className="input-group">
-          <span className="input-group-text">$</span>
+          <span className="input-group-text"> {symbols(currentRate)} </span>
           <input
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
@@ -78,11 +118,39 @@ function AllBanks({ banks }) {
                 </div>
               </td>
               <td style={{ textTransform: "uppercase" }}>{currentRate}</td>
-              <td>{item["amount_buy_" + currentRate]} so'm</td>
+              <td>
+                <span
+                  style={
+                    optimalBuy(item["amount_buy_" + currentRate], currentRate)
+                      ? style
+                      : null
+                  }
+                >
+                  {item["amount_buy_" + currentRate]
+                    ? item["amount_buy_" + currentRate] + " so'm"
+                    : "--"}{" "}
+                </span>
+              </td>
 
-              <td>{item["amount_sale_" + currentRate]} so'm</td>
+              <td>
+                <span
+                  style={
+                    optimalSale(item["amount_sale_" + currentRate], currentRate)
+                      ? style
+                      : null
+                  }
+                >
+                  {item["amount_sale_" + currentRate]
+                    ? item["amount_sale_" + currentRate] + " so'm"
+                    : "--"}{" "}
+                </span>
+              </td>
 
-              <td>{amount * item["amount_" + buySale + currentRate]} so'm </td>
+              <td>
+                {amount * item["amount_" + buySale + currentRate]
+                  ? amount * item["amount_" + buySale + currentRate] + " so'm"
+                  : "--"}{" "}
+              </td>
               <td className="update-date">
                 {getFormattedDate2(item.update_at)}
               </td>

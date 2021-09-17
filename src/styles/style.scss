@@ -19,7 +19,6 @@ html {
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
-  // background-color: $bgColor;
 }
 
 .navbar {
@@ -74,11 +73,11 @@ html {
 .home {
   padding: 10px 60px;
 
-  .best-rates{
-    tbody{
-      td{
+  .best-rates {
+    tbody {
+      td {
         vertical-align: middle;
-        p{
+        p {
           font-size: 12px;
           margin: 0;
           color: $myColor;
@@ -107,7 +106,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    p{
+    p {
       margin: 0;
     }
     img {
@@ -139,7 +138,10 @@ html {
       font-weight: 700;
     }
     p {
-      font-size: 18px;
+      font-size: 14px;
+      span {
+        font-weight: 600;
+      }
     }
   }
   .links {
@@ -166,35 +168,14 @@ html {
   padding: 10px 60px;
   height: 418px;
   display: flex;
-
-  .left {
-    flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  .social{
+    font-size: 66px;
+    margin: 15px;
   }
-  .right {
-    flex: 1;
-    @include flexible(column, center, center);
-    form {
-      width: 400px;
-      @include flexible(column, space-around, center);
-      & > * {
-        width: 400px;
-        font-size: 14px;
-        margin: 10px 0;
-        padding: 5px 10px;
-        border: 1px solid $myColor;
-        border-radius: 5px;
-      }
-      .contact-btn {
-        border: none;
-        padding: 5px;
-        width: 150px;
-        background-color: $myColor;
-        color: #fff;
-        transition: all 0.2s ease;
-        &:hover {
-          opacity: 0.7;
-        }
-      }
-    }
+  p{
+    text-align: center;
   }
 }

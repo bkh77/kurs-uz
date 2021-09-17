@@ -5,20 +5,28 @@ const slice = createSlice({
   name: "home",
   initialState: {
     banks: [],
-    month: [],
     ratesHistory: [],
+    bestBuy: [],
+    bestSale: [],
   },
   reducers: {
     saveBanks: (state, action) => {
       state.banks = action.payload;
     },
 
-    saveMonth: (state, action) => {
-      state.month = action.payload;
+    saveRatesHistory: (state, action) => {
+      state.ratesHistory = Array.prototype.reverse.call(action.payload);
     },
 
-    saveRatesHistory: (state, action) => {
-      state.ratesHistory = action.payload;
+    saveBestBuy: (state, action) => {
+      if (action.payload) {
+        state.bestBuy.push(action.payload);
+      }
+    },
+    saveBestSale: (state, action) => {
+      if (action.payload) {
+        state.bestSale.push(action.payload);
+      }
     },
   },
 });
@@ -38,5 +46,7 @@ export const getRatesHistory = () =>
     onSuccess: slice.actions.saveRatesHistory.type,
     onFail: slice.actions.saveRatesHistory.type,
   });
+
+export const { saveBestBuy, saveBestSale } = slice.actions;
 
 export default slice.reducer;

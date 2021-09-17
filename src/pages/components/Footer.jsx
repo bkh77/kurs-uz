@@ -1,9 +1,8 @@
 import React from "react";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TelegramIcon from "@material-ui/icons/Telegram";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import Facebook from "@material-ui/icons/Facebook";
 import TimelineIcon from "@material-ui/icons/Timeline";
-import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -11,6 +10,7 @@ function Footer() {
     textDecoration: "none",
     color: "inherit",
   };
+
   return (
     <div className="footer">
       <div className="social">
@@ -18,35 +18,46 @@ function Footer() {
 
         <ul>
           <li>
-            <Link style={styleLink} to="/#">
+            <a
+              style={styleLink}
+              href="https://www.instagram.com/rootacademyuz/"
+            >
               <InstagramIcon /> Instagram
-            </Link>
+            </a>
           </li>
           <li>
-            <Link style={styleLink} to="/#">
+            <a
+              style={styleLink}
+              rel="noreferrer"
+              target="_blank"
+              href="https://t.me/rootacademysupport"
+            >
               <TelegramIcon /> Telegram
-            </Link>
+            </a>
           </li>
           <li>
-            <Link style={styleLink} to="/#">
-              <MailOutlineIcon /> Email
-            </Link>
+            <a
+              style={styleLink}
+              rel="noreferrer"
+              target="_blank"
+              href="https://www.facebook.com/rootacademy"
+            >
+              <Facebook /> Facebook
+            </a>
           </li>
         </ul>
       </div>
       <div className="desc">
-        <h4>valyuta-kurslari.uz</h4>
         <p>
-          O'zbekistondagi barcha banklarning <br /> valyuta kurslari
+          O'zbekistondagi barcha banklarning <br /> valyuta kurslari <br />{" "}
+          <br />
+          <span>© valyuta-kurslari.uz - 2021</span>
         </p>
       </div>
 
       <div className="links">
         <Link style={styleLink} to="/history">
           <TimelineIcon /> Kurslar tarixi
-        </Link>
-        <Link style={styleLink} to="/calc">
-          <AttachMoneyRoundedIcon /> Kalkulyator
         </Link>
       </div>
     </div>

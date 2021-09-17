@@ -1,34 +1,51 @@
 import React from "react";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import TelegramIcon from "@material-ui/icons/Telegram";
+import Facebook from "@material-ui/icons/Facebook";
+import { FaPhone } from "react-icons/fa";
+import { BsFillEnvelopeFill } from "react-icons/bs";
+
+const styleLink = {
+  textDecoration: "none",
+  color: "inherit",
+};
 
 function Contact() {
   return (
     <div className="contact">
-      <div className="left">
+      <div>
+        <a
+          style={styleLink}
+          rel="noreferrer"
+          target="_blank"
+          href="https://www.instagram.com/rootacademyuz/"
+        >
+          <InstagramIcon className="social" />
+        </a>
 
-        <div className="insta">
-            
-        </div>
-        <div className="telegram">
+        <a
+          style={styleLink}
+          rel="noreferrer"
+          target="_blank"
+          href="https://t.me/rootacademysupport"
+        >
+          <TelegramIcon className="social" />
+        </a>
 
-        </div>
-        <div className="fasebook">
-
-        </div>
-
+        <a
+          style={styleLink}
+          rel="noreferrer"
+          target="_blank"
+          href="https://www.facebook.com/rootacademy"
+        >
+          <Facebook className="social" />
+        </a>
       </div>
-      <div className="right">
-        <p>Bizga xabar qoldiring </p>
-
-        <form action="">
-          <input type="text" placeholder="Ismingiz " />
-          <input type="text" placeholder="Telefon raqamingiz  " />
-          <textarea rows="6" type="text" placeholder="Xabar " />
-
-          <button onClick={(e)=>e.preventDefault()}  className="contact-btn" type="submit">
-            Yuborish
-          </button>
-        </form>
-      </div>
+      <p>
+        <FaPhone /> +998 93 786 25 07
+        <br /> <br />
+        <BsFillEnvelopeFill /> rootacademyuz@gmail.com
+      </p>
     </div>
   );
 }

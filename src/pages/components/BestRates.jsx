@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getMarkaz } from "../../store/reducers/rateHistory";
+import { saveBestBuy, saveBestSale } from "../../store/reducers/home";
 
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 
-function BestRates({ markaz, getMarkaz, banks }) {
+function BestRates({ markaz, getMarkaz, banks, saveBestBuy, saveBestSale }) {
   useEffect(() => {
     getMarkaz();
   }, [getMarkaz]);
@@ -100,8 +101,6 @@ function BestRates({ markaz, getMarkaz, banks }) {
     return item;
   });
 
-  console.log(markazBest);
-
   function defRate(i) {
     switch (i) {
       case "840":
@@ -134,11 +133,17 @@ function BestRates({ markaz, getMarkaz, banks }) {
               <td>{item.Ccy} </td>
               <td>
                 {item.buy["amount_buy_" + defRate(item.Code)]} so'm
-                <p>{item.buy.bank}</p>
+                <p>
+                  {item.buy.bank}{" "}
+                  {saveBestBuy(item.buy["amount_buy_" + defRate(item.Code)])}{" "}
+                </p>
               </td>
               <td>
                 {item.sale["amount_sale_" + defRate(item.Code)]} so'm
-                <p>{item.sale.bank}</p>
+                <p>
+                  {item.sale.bank}{" "}
+                  {saveBestSale(item.sale["amount_sale_" + defRate(item.Code)])}
+                </p>
               </td>
               <td>{item.Rate} so'm</td>
               <td style={{ color: colorDiff(item.Diff) }}>
@@ -157,5 +162,7 @@ export default connect(
   ({ rateHistory: { markaz }, home: { banks } }) => ({ markaz, banks }),
   {
     getMarkaz,
+    saveBestBuy,
+    saveBestSale,
   }
 )(BestRates);

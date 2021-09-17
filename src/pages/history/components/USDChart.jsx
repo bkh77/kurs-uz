@@ -10,6 +10,10 @@ import {
 } from "recharts";
 
 function USDChart({ ratesHistory }) {
+
+  console.log(ratesHistory);
+
+
   return (
     <div className="my-4">
       <AreaChart
