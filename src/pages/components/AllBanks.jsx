@@ -47,11 +47,11 @@ function AllBanks({ banks, bestBuy, bestSale }) {
   function symbols(i) {
     switch (i) {
       case "usd":
-        return <b>&#36;</b>;
+        return <span>&#36;</span>;
       case "eur":
-        return <b>&euro;</b>;
+        return <span>&euro;</span>;
       case "rub":
-        return <b>&#8381;</b>;
+        return <span>&#8381;</span>;
 
       default:
         break;
