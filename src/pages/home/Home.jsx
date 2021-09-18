@@ -4,7 +4,7 @@ import { getBanks, getRatesHistory } from "../../store/reducers/home";
 import AllBanks from "../components/AllBanks";
 import BestRates from "../components/BestRates";
 
-function Home({ banks, getBanks, getRatesHistory, bestBuy, bestSale }) {
+function Home({ getBanks, getRatesHistory }) {
   useEffect(() => {
     getBanks();
     getRatesHistory();
@@ -15,22 +15,14 @@ function Home({ banks, getBanks, getRatesHistory, bestBuy, bestSale }) {
       <div className="row">
         <div className="col-md-10 offset-1">
           <BestRates />
-          <AllBanks banks={banks} bestBuy={bestBuy} bestSale={bestSale} />
+          <AllBanks />
         </div>
       </div>
     </div>
   );
 }
 
-export default connect(
-  ({ home: { banks, markaz, bestBuy, bestSale } }) => ({
-    banks,
-    markaz,
-    bestBuy,
-    bestSale,
-  }),
-  {
-    getBanks,
-    getRatesHistory,
-  }
-)(Home);
+export default connect(null, {
+  getBanks,
+  getRatesHistory,
+})(Home);

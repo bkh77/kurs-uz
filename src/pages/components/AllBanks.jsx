@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import SliderValue from "./SliderValue";
 
 function AllBanks({ banks, bestBuy, bestSale }) {
@@ -162,4 +163,8 @@ function AllBanks({ banks, bestBuy, bestSale }) {
   );
 }
 
-export default AllBanks;
+export default connect(({ home: { banks, bestBuy, bestSale } }) => ({
+  banks,
+  bestBuy,
+  bestSale,
+}))(AllBanks);
