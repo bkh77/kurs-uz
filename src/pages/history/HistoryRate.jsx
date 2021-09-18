@@ -12,7 +12,7 @@ function History() {
         <div className="history-links">
           <Link to="/history">
             <button className="btn btn-outline-primary btn-sm">
-              USD - AQSH dollori kurs tarixi
+              USD - AQSH dollori tarixi
             </button>
           </Link>
           <Link to="/history/eur">

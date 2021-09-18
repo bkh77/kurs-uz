@@ -4,7 +4,12 @@ $myColor: #34495e;
 $bgColor: #ecf0f1;
 $footerColor: #bdc3c7;
 
-$mm: #db7474;
+$width: 667px;
+@mixin mobile {
+  @media (max-width:#{$width}) {
+    @content;
+  }
+}
 
 @mixin flexible($fd, $jc, $ai) {
   display: flex;
@@ -30,6 +35,12 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include mobile {
+    justify-content: center;
+    height: 100px;
+    padding: 10px 30px;
+  }
+
   .logo {
     h1 {
       color: #000;
@@ -40,6 +51,10 @@ html {
       color: #fff;
       margin: 0;
       transition: all 0.2s ease;
+      @include mobile {
+        font-size: 22px;
+        margin-right: 15px;
+      }
       &:hover {
         opacity: 0.6;
       }
@@ -50,6 +65,7 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
     input {
       transform: scale(1.5);
     }
@@ -64,6 +80,9 @@ html {
     text-transform: uppercase;
     margin-left: 5px;
     transition: all 0.2s ease;
+    @include mobile {
+      font-size: 12px;
+    }
     &:hover {
       opacity: 0.6;
     }
@@ -73,14 +92,36 @@ html {
 .home {
   padding: 10px 60px;
 
+  @include mobile {
+    padding: 10px 30px;
+  }
+
   .best-rates {
+    h3 {
+      @include mobile {
+        font-size: 16px;
+      }
+    }
+    thead {
+      th {
+        @include mobile {
+          font-size: 11px;
+        }
+      }
+    }
     tbody {
       td {
+        @include mobile {
+          font-size: 11px;
+        }
         vertical-align: middle;
         p {
           font-size: 12px;
           margin: 0;
           color: $myColor;
+          @include mobile {
+            font-size: 8px;
+          }
         }
       }
     }
@@ -88,10 +129,27 @@ html {
 }
 
 .all-banks {
+  h3 {
+    @include mobile() {
+      font-size: 16px;
+    }
+  }
   .control {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include mobile {
+      flex-wrap: wrap;
+    }
+
+    input,
+    select,
+    span {
+      @include mobile() {
+        font-size: 12px;
+      }
+    }
 
     .input-group,
     select {
@@ -100,6 +158,9 @@ html {
   }
   .update-date {
     font-size: 12px;
+    @include mobile() {
+      font-size: 8px;
+    }
   }
   .bank-img {
     display: flex;
@@ -111,11 +172,19 @@ html {
     }
     img {
       width: 140px;
+      @include mobile {
+        width: 100px;
+      }
     }
   }
 
-  tbody td {
+  tbody td,
+  th {
     vertical-align: middle;
+    @include mobile() {
+      font-size: 11px;
+      text-align: center;
+    }
   }
 }
 
@@ -125,6 +194,11 @@ html {
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  @include mobile() {
+    flex-direction: column;
+    font-size: 10px;
+  }
   .social {
     ul {
       list-style: none;
@@ -139,6 +213,9 @@ html {
     }
     p {
       font-size: 14px;
+      @include mobile() {
+        font-size: 10px;
+      }
       span {
         font-weight: 600;
       }
@@ -154,11 +231,23 @@ html {
 .history {
   padding: 20px 60px;
 
+  @include mobile(){
+    padding: 10px 30px;
+    text-align: center;
+  } 
+
   .header,
   .history-links {
+    @include mobile(){
+      flex-direction: column;
+    }
     display: flex;
     justify-content: space-between;
     button {
+      @include mobile(){
+        width: 100%;
+        margin-top: 10px;
+      }
       margin-right: 15px;
     }
   }
@@ -171,11 +260,15 @@ html {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  .social{
+  .social {
+    @include mobile(){
+      font-size: 45px;
+    }
     font-size: 66px;
     margin: 15px;
+    color: $myColor;
   }
-  p{
+  p {
     text-align: center;
   }
 }

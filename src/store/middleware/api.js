@@ -14,7 +14,7 @@ export const api =
     const { url, method, data, onSuccess, onFail } = action.payload;
 
     axios({
-      baseURL: "http://valyuta-kurslari.uz/api/",
+      baseURL: "https://valyuta-kurslari.uz/api/",
       url,
       method,
       data,

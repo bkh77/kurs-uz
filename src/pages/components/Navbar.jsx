@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="navbar">
-        <div className="logo">
+      {/* <div className="container"> */}
+
+        <div className=" logo">
           <Link to="/" style={{ textDecoration: "none" }}>
             <h1 className="logolink">valyuta-kurslari.uz</h1>
           </Link>
         </div>
-        <div className="leng">
+        <div className=" leng">
           <span>UZ</span>
           <div className="form-check form-switch">
             <input
@@ -31,6 +33,8 @@ function Navbar() {
             <button>bog'lanish </button>
           </Link>
         </div>
+      {/* </div> */}
+
     </div>
   );
 }

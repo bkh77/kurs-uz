@@ -10,12 +10,8 @@ import {
 } from "recharts";
 
 function USDChart({ ratesHistory }) {
-
-  console.log(ratesHistory);
-
-
   return (
-    <div className="my-4">
+    <div className="my-4 table-responsive ">
       <AreaChart
         width={1200}
         height={450}

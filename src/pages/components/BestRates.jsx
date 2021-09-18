@@ -117,43 +117,45 @@ function BestRates({ markaz, getMarkaz, banks, saveBestBuy, saveBestSale }) {
     <div className="best-rates mb-5">
       <h3 className="text-center my-3">Bugungi eng yaxshi kurslar</h3>
 
-      <table className="table table-striped ">
-        <thead>
-          <tr>
-            <th>Valyuta</th>
-            <th>Olish</th>
-            <th>Sotish</th>
-            <th>Markaziy bank</th>
-            <th>O'zgarish</th>
-          </tr>
-        </thead>
-        <tbody>
-          {markazBest.map((item) => (
-            <tr key={item.id}>
-              <td>{item.Ccy} </td>
-              <td>
-                {item.buy["amount_buy_" + defRate(item.Code)]} so'm
-                <p>
-                  {item.buy.bank}{" "}
-                  {saveBestBuy(item.buy["amount_buy_" + defRate(item.Code)])}{" "}
-                </p>
-              </td>
-              <td>
-                {item.sale["amount_sale_" + defRate(item.Code)]} so'm
-                <p>
-                  {item.sale.bank}{" "}
-                  {saveBestSale(item.sale["amount_sale_" + defRate(item.Code)])}
-                </p>
-              </td>
-              <td>{item.Rate} so'm</td>
-              <td style={{ color: colorDiff(item.Diff) }}>
-                {item.Diff}{" "}
-                {iconDiff(item.Diff) ? <BsCaretUpFill /> : <BsCaretDownFill />}
-              </td>
+      <div className="table-responsive">
+        <table className="table table-striped ">
+          <thead>
+            <tr>
+              <th>Valyuta</th>
+              <th>Olish</th>
+              <th>Sotish</th>
+              <th>Markaziy bank</th>
+              <th>O'zgarish</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {markazBest.map((item) => (
+              <tr key={item.id}>
+                <td>{item.Ccy} </td>
+                <td>
+                  {item.buy["amount_buy_" + defRate(item.Code)]} so'm
+                  <p>
+                    {item.buy.bank}{" "}
+                    {saveBestBuy(item.buy["amount_buy_" + defRate(item.Code)])}{" "}
+                  </p>
+                </td>
+                <td>
+                  {item.sale["amount_sale_" + defRate(item.Code)]} so'm
+                  <p>
+                    {item.sale.bank}{" "}
+                    {saveBestSale(item.sale["amount_sale_" + defRate(item.Code)])}
+                  </p>
+                </td>
+                <td>{item.Rate} so'm</td>
+                <td style={{ color: colorDiff(item.Diff) }}>
+                  {item.Diff}{" "}
+                  {iconDiff(item.Diff) ? <BsCaretUpFill /> : <BsCaretDownFill />}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

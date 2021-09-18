@@ -12,12 +12,8 @@ function Home({ getBanks, getRatesHistory }) {
 
   return (
     <div className="home">
-      <div className="row">
-        <div className="col-md-10 offset-1">
           <BestRates />
           <AllBanks />
-        </div>
-      </div>
     </div>
   );
 }

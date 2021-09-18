@@ -9,8 +9,8 @@ function AllBanks({ banks, bestBuy, bestSale }) {
       day: "numeric",
       year: "numeric",
       month: "short",
-      hour: "numeric",
-      minute: "numeric",
+      hour: '2-digit',
+      minute: '2-digit'
     });
   };
   const [amount, setAmount] = useState(200);
@@ -95,70 +95,72 @@ function AllBanks({ banks, bestBuy, bestSale }) {
         <SliderValue amount={amount} setAmount={setAmount} />
       </div>
 
-      <table className="table table-striped table-sm">
-        <thead>
-          <tr>
-            <th>Bank</th>
-            <th>Valyuta</th>
-            <th>Olish</th>
-            <th>Sotish </th>
-            <th>Miqdor </th>
-            <th>Yangilangan</th>
-          </tr>
-        </thead>
-        <tbody>
-          {banks.map((item) => (
-            <tr key={item.id}>
-              <td>
-                <div className="bank-img">
-                  <img
-                    src={"http://valyuta-kurslari.uz" + item.image}
-                    alt={item.bank}
-                  />
-                  <p>{item.bank}</p>
-                </div>
-              </td>
-              <td style={{ textTransform: "uppercase" }}>{currentRate}</td>
-              <td>
-                <span
-                  style={
-                    optimalBuy(item["amount_buy_" + currentRate], currentRate)
-                      ? style
-                      : null
-                  }
-                >
-                  {item["amount_buy_" + currentRate]
-                    ? item["amount_buy_" + currentRate] + " so'm"
-                    : "--"}{" "}
-                </span>
-              </td>
-
-              <td>
-                <span
-                  style={
-                    optimalSale(item["amount_sale_" + currentRate], currentRate)
-                      ? style
-                      : null
-                  }
-                >
-                  {item["amount_sale_" + currentRate]
-                    ? item["amount_sale_" + currentRate] + " so'm"
-                    : "--"}{" "}
-                </span>
-              </td>
-
-              <td>
-                {amount * item["amount_" + buySale + currentRate]
-                  ? amount * item["amount_" + buySale + currentRate] + " so'm"
-                  : "--"}{" "}
-              </td>
-              <td className="update-date">
-                {getFormattedDate2(item.update_at)}
-              </td>
+      <div className="table-responsive">
+        <table className="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Bank</th>
+              <th>Valyuta</th>
+              <th>Olish</th>
+              <th>Sotish </th>
+              <th>Miqdor </th>
+              <th>Yangilangan</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {banks.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  <div className="bank-img">
+                    <img
+                      src={"https://valyuta-kurslari.uz" + item.image}
+                      alt={item.bank}
+                    />
+                    <p>{item.bank}</p>
+                  </div>
+                </td>
+                <td style={{ textTransform: "uppercase" }}>{currentRate}</td>
+                <td>
+                  <span
+                    style={
+                      optimalBuy(item["amount_buy_" + currentRate], currentRate)
+                        ? style
+                        : null
+                    }
+                  >
+                    {item["amount_buy_" + currentRate]
+                      ? item["amount_buy_" + currentRate] + " so'm"
+                      : "--"}{" "}
+                  </span>
+                </td>
+
+                <td>
+                  <span
+                    style={
+                      optimalSale(item["amount_sale_" + currentRate], currentRate)
+                        ? style
+                        : null
+                    }
+                  >
+                    {item["amount_sale_" + currentRate]
+                      ? item["amount_sale_" + currentRate] + " so'm"
+                      : "--"}{" "}
+                  </span>
+                </td>
+
+                <td>
+                  {amount * item["amount_" + buySale + currentRate]
+                    ? amount * item["amount_" + buySale + currentRate] + " so'm"
+                    : "--"}{" "}
+                </td>
+                <td className="update-date">
+                  {getFormattedDate2(item.update_at)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

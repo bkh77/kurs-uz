@@ -51,7 +51,7 @@ function Footer() {
         <p>
           O'zbekistondagi barcha banklarning <br /> valyuta kurslari <br />{" "}
           <br />
-          <span>© valyuta-kurslari.uz - 2021</span>
+          <span>© RootSoft - 2021</span>
         </p>
       </div>
 
