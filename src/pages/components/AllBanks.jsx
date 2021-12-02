@@ -5,7 +5,7 @@ import SliderValue from "./SliderValue";
 function AllBanks({ banks, bestBuy, bestSale }) {
   const getFormattedDate2 = (dateStr) => {
     const date = new Date(dateStr);
-    return date.toLocaleString("en-US", {
+    return date.toLocaleString("ru-RU", {
       day: "numeric",
       year: "numeric",
       month: "short",
@@ -129,7 +129,10 @@ function AllBanks({ banks, bestBuy, bestSale }) {
                     }
                   >
                     {item["amount_buy_" + currentRate]
-                      ? item["amount_buy_" + currentRate] + " so'm"
+                      ? item["amount_buy_" + currentRate].toLocaleString(
+                        'ru-RU',
+                        {style:'currency', currency:'UZS'}
+                      )
                       : "--"}{" "}
                   </span>
                 </td>
@@ -143,14 +146,21 @@ function AllBanks({ banks, bestBuy, bestSale }) {
                     }
                   >
                     {item["amount_sale_" + currentRate]
-                      ? item["amount_sale_" + currentRate] + " so'm"
+                      ? item["amount_sale_" + currentRate].toLocaleString(
+                        'ru-RU',
+                        {style:'currency', currency:'UZS'}
+                      )
                       : "--"}{" "}
                   </span>
                 </td>
 
                 <td>
                   {amount * item["amount_" + buySale + currentRate]
-                    ? amount * item["amount_" + buySale + currentRate] + " so'm"
+                    ? parseFloat(amount * item["amount_" + buySale + currentRate]).toLocaleString(
+                      'ru-RU',
+                      {style:'currency', currency:'UZS'}
+                    )
+                    
                     : "--"}{" "}
                 </td>
                 <td className="update-date">

@@ -9,10 +9,7 @@ import {
   Area,
 } from "recharts";
 
-function EURChart({  ratesHistory }) {
-  
- 
-
+function EURChart({ ratesHistory }) {
   return (
     <div className="my-4 table-responsive">
       <AreaChart

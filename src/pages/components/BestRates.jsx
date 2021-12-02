@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getMarkaz } from "../../store/reducers/rateHistory";
 import { saveBestBuy, saveBestSale } from "../../store/reducers/home";
@@ -9,6 +9,8 @@ function BestRates({ markaz, getMarkaz, banks, saveBestBuy, saveBestSale }) {
   useEffect(() => {
     getMarkaz();
   }, [getMarkaz]);
+
+  const [collapse, setcollapse] = useState(true);
 
   function colorDiff(value) {
     if (parseFloat(value) > 0) {
@@ -115,8 +117,7 @@ function BestRates({ markaz, getMarkaz, banks, saveBestBuy, saveBestSale }) {
 
   return (
     <div className="best-rates mb-5">
-      <h3 className="text-center my-3">Bugungi eng yaxshi kurslar</h3>
-
+      <h3 className="text-center my-3">Bugungi eng yaxshi kurslar</h3>{" "}
       <div className="table-responsive">
         <table className="table table-striped ">
           <thead>
@@ -143,13 +144,19 @@ function BestRates({ markaz, getMarkaz, banks, saveBestBuy, saveBestSale }) {
                   {item.sale["amount_sale_" + defRate(item.Code)]} so'm
                   <p>
                     {item.sale.bank}{" "}
-                    {saveBestSale(item.sale["amount_sale_" + defRate(item.Code)])}
+                    {saveBestSale(
+                      item.sale["amount_sale_" + defRate(item.Code)]
+                    )}
                   </p>
                 </td>
                 <td>{item.Rate} so'm</td>
                 <td style={{ color: colorDiff(item.Diff) }}>
                   {item.Diff}{" "}
-                  {iconDiff(item.Diff) ? <BsCaretUpFill /> : <BsCaretDownFill />}
+                  {iconDiff(item.Diff) ? (
+                    <BsCaretUpFill />
+                  ) : (
+                    <BsCaretDownFill />
+                  )}
                 </td>
               </tr>
             ))}

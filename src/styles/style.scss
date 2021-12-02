@@ -231,20 +231,20 @@ html {
 .history {
   padding: 20px 60px;
 
-  @include mobile(){
+  @include mobile() {
     padding: 10px 30px;
     text-align: center;
-  } 
+  }
 
   .header,
   .history-links {
-    @include mobile(){
+    @include mobile() {
       flex-direction: column;
     }
     display: flex;
     justify-content: space-between;
     button {
-      @include mobile(){
+      @include mobile() {
         width: 100%;
         margin-top: 10px;
       }
@@ -261,7 +261,7 @@ html {
   justify-content: space-around;
   align-items: center;
   .social {
-    @include mobile(){
+    @include mobile() {
       font-size: 45px;
     }
     font-size: 66px;
